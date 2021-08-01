@@ -1,30 +1,38 @@
+from abc import abstractproperty
 import random
+from statistics import mean
 
-def random_walk(steps):
+def random_walk_2(steps):
     """
-    return coordinates after "Steps " block random wals
-    """
-    x=0
-    y=0 
-    for i in range (steps):
-        step = random.choice(['N','S','W','E'])
-        if step == 'N':
-            y+=1
-        elif step == 'S':
-            y-=1
-        elif step == 'E':
-            x+=1
-        elif step == 'W':
-            x-=1
-    return x,y
+    Regresa las coordenadas despues de caminar "steps" 
 
-    
+    """
+    x,y=0,0
+    for i in range(steps):
+        (dx,dy)=random.choice([(0,1),(0,-1),(1,0),(-1,0)])
+        x += dx
+        y += dy
+    return (x,y)
+
+
+def main(simulations):
+    mean_walked=[0]
+    steps=1
+    while mean(mean_walked)<=4:
+        steps+=1
+        for i in range (simulations):
+            walk=random_walk_2(steps)
+            distance_from_home=abs(walk[0])+abs(walk[0])
+            #print(walk,f"Distancia caminada desde tu casa {distance_from_home}")
+            mean_walked.append(distance_from_home)
+
+    return mean(mean_walked),steps
+
 if __name__ == "__main__":
-    steps=int(input("Ingrese el numero de pasos que dara" ))
-    n_simulations=int(input("Ingrese el numero de simulaciones que se haran" ))
-    for i in range(n_simulations):
-        distance=random_walk(steps)
-        print(distance,f"La distancia caminada desde tu casa es de {abs(distance[0])+ abs(distance[1])} ")
+    simulations=int(input("Ingrese el numero de veces que se hara la simulacion"))
+    promedio, pasos= main(simulations)
+    print(promedio,f'El maximo numero de pasos en el que el promedio de distancia es 4 o menor es de {pasos}')
 
-    
-    
+
+
+     
