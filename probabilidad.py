@@ -19,6 +19,7 @@ def main(numero_de_tiros, numero_de_intentos):
     tiros = []
     for _ in range(numero_de_intentos):
         secuencia_de_tiros = tirar_dado(numero_de_tiros)
+        tiros.append(secuencia_de_tiros)
 
     tiros_con_1 = 0
     for tiro in tiros:
