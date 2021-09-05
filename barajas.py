@@ -1,7 +1,5 @@
 import collections
 import random
-from typing import Collection
-
 PALOS=['⚔️','💘','💎','🍀']
 VALORES=['A','1','2','3','4','5','6','7','8','9','JOTA','REINA','REY']
 
@@ -59,6 +57,7 @@ def main(tamano_mano,intentos):
             lista_corrida.append( VALORES.index(keys))
         lista_corrida.sort()
         if len(lista_corrida)==5:
+            
             if (lista_corrida[0]+1)== lista_corrida[1] and (lista_corrida[0]+2)== lista_corrida[2] and (lista_corrida[0]+3)== lista_corrida[3] and (lista_corrida[0]+4)== lista_corrida[4]:
                 corrida+=1
                 if mano[0][0] == mano[1][0] and mano[1][0] == mano[2][0] and mano[2][0] == mano[3][0]  and mano[3][0] == mano[4][0]:
